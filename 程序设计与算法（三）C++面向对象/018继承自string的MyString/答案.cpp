@@ -5,53 +5,13 @@
 using namespace std;
 class MyString:public string
 {
-string s;
 public:
-    MyString(string a = ""):s(a){}
-    MyString(const char *a)
-    {
-        string t(a);
-        s = t;
-    }
-    friend ostream & operator << (ostream & o, const MyString & a)
-    {
-        o << a.s;
-        return o;
-    }
-    MyString & operator += (const MyString & a)
-    {
-        s += a.s;
-        return *this;
-    }
-    MyString operator + (const MyString & a)
-    {
-        MyString t(*this);
-        t += a;
-        return t;
-    }
-    MyString operator + (const char *a)
-    {
-        MyString t(*this);
-        t += a;
-        return t;
-    }
-    friend MyString operator + (const char *a, const MyString & b)
-    {
-        MyString t(a);
-        t += b;
-        return t;
-    }
-    char & operator [] (int n)
-    {
-        return s[n];
-    }
-    bool operator < (const MyString & a) const
-    {
-        return s < a.s;
-    }
+    MyString():string(){}
+    MyString(const char *a):string(a){}
+    MyString(string a):string(a){}
     MyString operator () (int a, int b)
     {
-        return s.substr(a, b);
+        return string::substr(a, b);
     }
 };
 
