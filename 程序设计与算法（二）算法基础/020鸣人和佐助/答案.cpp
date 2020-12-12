@@ -15,7 +15,6 @@ int visited[300][300][20];
 
 int main()
 {
-//    freopen("D:\\c语言源程序\\测试数据.txt", "r", stdin);
     int n, m, t;
     scanf("%d%d%d", &m, &n, &t);
     for (int i = 0; i < m; ++i)
