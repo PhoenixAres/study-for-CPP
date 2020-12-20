@@ -2,39 +2,7 @@
 using namespace std;
 
 const int maxn = 100005;
-int w[maxn], v[maxn], num[maxn];
 int dp[maxn];
-int V;
-
-void ZeroOnePack(int w, int v)
-{
-    for (int j = V; j >= w; --j)
-        dp[j] = max(dp[j], dp[j-w] + v);
-}
-
-void CompletePack(int w, int v)
-{
-    for (int j = w; j <= V; ++j)
-        dp[j] = max(dp[j], dp[j-w] + v);
-}
-
-void MultiplePack(int w, int v, int num)
-{
-    if (w * num >= V)
-        CompletePack(w, v);
-    else
-    {
-        int k = 1;
-        while (k < num)
-        {
-            ZeroOnePack(k * w, k * v);
-            num -= k;
-            k <<= 1;
-        }
-        ZeroOnePack(num * w, num * v);
-    }
-}
-
 int DP[100][100];
 set<int> st;
 
