@@ -15,3 +15,5 @@ Common Subsequence：http://poj.org/problem?id=1458
 石子合并（区间dp）：https://ac.nowcoder.com/acm/problem/51170
 
 合并回文子串（区间dp）：https://ac.nowcoder.com/acm/problem/13230
+
+Magical Ornament（状压dp）：https://atcoder.jp/contests/abc190/tasks/abc190_e
