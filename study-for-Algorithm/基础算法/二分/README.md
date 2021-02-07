@@ -12,3 +12,4 @@ Dropping tests（01分数规划）：http://poj.org/problem?id=2976
 
 Programming Contest：https://atcoder.jp/contests/abc184/tasks/abc184_f
 
+最接近目标值的子序列和：https://leetcode-cn.com/problems/closest-subsequence-sum/
