@@ -8,6 +8,8 @@
 
 Shift and Inversions：https://atcoder.jp/contests/abc190/tasks/abc190_f
 
+换个角度思考：https://ac.nowcoder.com/acm/problem/19427
+
 
 
 
