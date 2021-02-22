@@ -1,4 +1,4 @@
-# study-for-CPP
+﻿# study-for-CPP
 
 本项目配合中国大学MOOC课程：
 
@@ -16,10 +16,3 @@
 
 算法学习笔记
 
-# LeetCode每日一题
-
-LeetCode：https://leetcode-cn.com/problemset/all/
-
-# Atcoder-Contest
-
-Atcoder：https://atcoder.jp/contests/
