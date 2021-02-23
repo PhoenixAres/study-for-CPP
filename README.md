@@ -1,4 +1,4 @@
-﻿# study-for-CPP
+﻿# cppPractise
 
 本项目配合中国大学MOOC课程：
 
@@ -12,7 +12,7 @@
 
 如何使用OJ可观看MOOC课程，里面有详细介绍
 
-# study-for-Algorithm
+# Algorithm
 
 算法学习笔记
 
