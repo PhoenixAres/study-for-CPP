@@ -1,8 +1,12 @@
 ﻿# 目录
 [1.深度优先搜索](#1-深度优先搜索)
+
 [2.宽度优先搜索](#2-宽度优先搜索)
+
 [3.记忆化搜索](#3-记忆化搜索)
+
 [4.搜索剪枝](#4-搜索剪枝)
+
 [5.题目指南](#5-题目指南)
 
 # 搜索
@@ -276,24 +280,24 @@ int main()
 ```
 ## 5. 题目指南：
 ### DFS
-[Lake Counting](http://poj.org/problem?id=2386)
+[Lake Counting](#1-深度优先搜索)
 
 [棋盘问题](http://poj.org/problem?id=1321)
 
 [模拟战役](https://ac.nowcoder.com/acm/problem/14698)
 
 ### BFS
-[走出迷宫](https://ac.nowcoder.com/acm/problem/14572)
+[走出迷宫](#2-宽度优先搜索)
 
 [maze](https://ac.nowcoder.com/acm/problem/15665)
 
 [Third Avenue](https://atcoder.jp/contests/abc184/tasks/abc184_e)
 
 ### 记忆化搜索
-[+1-1x2](https://atcoder.jp/contests/abc188/tasks/abc188_f)
+[+1-1x2](#3-记忆化搜索)
 
 ### 搜索剪枝
-[鸣人和佐助](http://bailian.openjudge.cn/practice/4115/)
+[鸣人和佐助](#4-搜索剪枝)
 
 [Peddler](https://atcoder.jp/contests/abc188/tasks/abc188_e)
 
