@@ -16,29 +16,25 @@
 
 算法学习笔记
 
-[基础算法](#Algorithm/基础算法)
+[基础算法](Algorithm/基础算法)
 
-​			[STL运用](#Algorithm/基础算法/STL运用)
+- [STL运用](Algorithm/基础算法/STL运用)
 
-​			[枚举](#Algorithm/基础算法/枚举)
+- [枚举](Algorithm/基础算法/枚举)
 
-​			[递归](#Algorithm/基础算法/递归)
+- [递归](Algorithm/基础算法/递归)
 
-​			[贪心](#Algorithm/基础算法/贪心)
+- [贪心](Algorithm/基础算法/贪心)
 
-​			[分治](#Algorithm/基础算法/分治)
+- [分治](Algorithm/基础算法/分治)
 
-​			[二分](#Algorithm/基础算法/二分)
+- [二分](Algorithm/基础算法/二分)
 
-[搜索](#Algorithm/搜索)
+[搜索](Algorithm/搜索)
 
-[动态规划](#Algorithm/动态规划)
+[动态规划](Algorithm/动态规划)
 
-[数据结构](#Algorithm/数据结构)
+[数据结构](Algorithm/数据结构)
 
-[图论](#Algorithm/图论)
-
-
-
-
+[图论](Algorithm/图论)
 
