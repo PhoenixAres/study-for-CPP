@@ -1,5 +1,12 @@
+﻿# 目录
+[1.深度优先搜索](#1-深度优先搜索)
+[2.宽度优先搜索](#2-宽度优先搜索)
+[3.记忆化搜索](#3-记忆化搜索)
+[4.搜索剪枝](#4-搜索剪枝)
+[5.题目指南](#5-题目指南)
+
 # 搜索
-## 1. 深度优先搜索（DFS）
+## 1. 深度优先搜索
 例题：[Lake Counting](http://poj.org/problem?id=2386)
 
 分析：从任意的W开始，不停地把邻接的部分用 '.' 代替，1次DFS后，与初始的这个W连接的所有W都被替换为 '.'
@@ -52,7 +59,7 @@ int main()
 }
 ```
 
-## 2. 宽度优先搜索（BFS）
+## 2. 宽度优先搜索
 与DFS不同的是，BFS总是优先搜索距离初始状态近的状态。
 
 例题：[走出迷宫](https://ac.nowcoder.com/acm/problem/14572)
@@ -269,13 +276,11 @@ int main()
 ```
 ## 5. 题目指南：
 ### DFS
-[Red and Black](http://poj.org/problem?id=1979)
+[Lake Counting](http://poj.org/problem?id=2386)
 
 [棋盘问题](http://poj.org/problem?id=1321)
 
 [模拟战役](https://ac.nowcoder.com/acm/problem/14698)
-
-[Lake Counting](http://poj.org/problem?id=2386)
 
 ### BFS
 [走出迷宫](https://ac.nowcoder.com/acm/problem/14572)
