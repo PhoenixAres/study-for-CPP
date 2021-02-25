@@ -1,6 +1,3 @@
-﻿
-@[toc]
-
 # 搜索
 ## 1. 深度优先搜索（DFS）
 例题：[Lake Counting](http://poj.org/problem?id=2386)
