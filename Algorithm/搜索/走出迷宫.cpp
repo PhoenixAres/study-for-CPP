@@ -8,6 +8,8 @@ const int maxn = 1e5 + 10;
 int n, m;
 char s[510][510];
 bool t[510][510];
+int dx[] = {0, 0, 1, -1};
+int dy[] = {1, -1, 0, 0};
 
 int main()
 {
@@ -25,21 +27,19 @@ int main()
         bool flag = false;
         while (!q.empty())
         {
-            pair<int, int> x = q.front();
+            int x = q.front().first;
+            int y = q.front().second;
             q.pop();
-            if (t[x.first][x.second]) continue;
-            t[x.first][x.second] = 1;
-            if (x == e) { flag = true; break; }
-            else
+            if (t[x][y]) continue;
+            t[x][y] = 1;
+            if (x == e.first && y == e.second) { flag = true; break; }
+            for (int i = 0; i < 4; ++i)
             {
-                if (x.first+1 <= n && !t[x.first+1][x.second] && s[x.first+1][x.second] != '#')
-                    q.push(make_pair(x.first+1, x.second));
-                if (x.second+1 <= m && !t[x.first][x.second+1] && s[x.first][x.second+1] != '#')
-                    q.push(make_pair(x.first, x.second+1));
-                if (x.first-1 >= 1 && !t[x.first-1][x.second] && s[x.first-1][x.second] != '#')
-                    q.push(make_pair(x.first-1, x.second));
-                if (x.second-1 >= 1 && !t[x.first][x.second-1] && s[x.first][x.second-1] != '#')
-                    q.push(make_pair(x.first, x.second-1));
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+                if (nx < 1 || nx > n) continue;
+                if (ny < 1 || ny > m) continue;
+                if (!t[nx][ny] && s[nx][ny] != '#') q.push({nx, ny});
             }
 
         }
