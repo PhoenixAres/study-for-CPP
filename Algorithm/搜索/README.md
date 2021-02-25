@@ -1,23 +1,25 @@
 ﻿# 目录
-[1.深度优先搜索](#1-深度优先搜索)
 
-[2.宽度优先搜索](#2-宽度优先搜索)
+[1. 深度优先搜索](#1-深度优先搜索)
 
-[3.记忆化搜索](#3-记忆化搜索)
+[2. 宽度优先搜索](#2-宽度优先搜索)
 
-[4.搜索剪枝](#4-搜索剪枝)
+[3. 记忆化搜索](#3-记忆化搜索)
 
-[5.题目指南](#5-题目指南)
+[4. 搜索剪枝](#4-搜索剪枝)
+
+[5. 题目指南](#5-题目指南)
 
 # 搜索
 ## 1. 深度优先搜索
+
 例题：[Lake Counting](http://poj.org/problem?id=2386)
 
 分析：从任意的W开始，不停地把邻接的部分用 '.' 代替，1次DFS后，与初始的这个W连接的所有W都被替换为 '.'
 
 直至图中不再存在W时，总共进行的DFS的次数就是答案。使用递归实现DFS。
 
-时间复杂度：O（$N \times M$）
+时间复杂度：O（NM）
 
 ```cpp
 #include <bits/stdc++.h>
@@ -62,15 +64,15 @@ int main()
     return 0; 
 }
 ```
-
 ## 2. 宽度优先搜索
+
 与DFS不同的是，BFS总是优先搜索距离初始状态近的状态。
 
 例题：[走出迷宫](https://ac.nowcoder.com/acm/problem/14572)
 
 分析：经典的迷宫类问题，该题询问的是能否到达终点，如果问题变成到达终点所需的最小步数，也就是BFS中，第一次到达终点的步数（因为BFS本身求的就是最短路）。
 
-BFS通常使用队列实现，时间复杂度：O（$N \times M$）
+BFS通常使用队列实现，时间复杂度：O（NM）
 
 ```cpp
 #include <bits/stdc++.h>
@@ -126,6 +128,7 @@ int main()
 }
 ```
 ## 3. 记忆化搜索
+
 例题：[+1-1x2](https://atcoder.jp/contests/abc188/tasks/abc188_f)
 
 分析：将问题转化为从 y 变为 x，可以进行 +1，−1 或 ÷2 的操作，之所以这样做，是因为转化题意之后操作更受约束，即进行了剪枝。
@@ -186,6 +189,7 @@ int main()
 }
 ```
 ## 4. 搜索剪枝
+
 例题：[鸣人和佐助](http://bailian.openjudge.cn/practice/4115/)
 
 分析：最短路问题，可以使用BFS，但如果使用DFS寻找最短路就需要剪枝。
@@ -198,7 +202,7 @@ int main()
 
 最优性剪枝：（1）如果当前没到终点，但花费时间已经超过我们所记录的最短时间，就不再搜索。
 
-（2）创建 minL 数组，minL[x][y][t] 表示走到(x, y)处，且查克拉数量为 t 时的花费的最小时间。如果另有一次搜索，再次到达该状态，但花费时间大于记录过的最小时间，就不再搜索。
+（2）创建 minL 数组，minL [x] [y] [t] 表示走到(x, y)处，且查克拉数量为 t 时的花费的最小时间。如果另有一次搜索，再次到达该状态，但花费时间大于记录过的最小时间，就不再搜索。
 
 ```cpp
 #include <bits/stdc++.h>
@@ -278,27 +282,27 @@ int main()
     return 0;
 }
 ```
-## 5. 题目指南：
+## 5. 题目指南
 ### DFS
+
 [Lake Counting](#1-深度优先搜索)
 
-[棋盘问题](http://poj.org/problem?id=1321)
+[棋盘问题](docs/棋盘问题.md)
 
-[模拟战役](https://ac.nowcoder.com/acm/problem/14698)
+[模拟战役](docs/模拟战役.md)
 
 ### BFS
+
 [走出迷宫](#2-宽度优先搜索)
 
-[maze](https://ac.nowcoder.com/acm/problem/15665)
+[maze](docs/maze.md)
 
-[Third Avenue](https://atcoder.jp/contests/abc184/tasks/abc184_e)
+[Third Avenue](docs/ThirdAvenue.md)
 
 ### 记忆化搜索
+
 [+1-1x2](#3-记忆化搜索)
 
 ### 搜索剪枝
+
 [鸣人和佐助](#4-搜索剪枝)
-
-[Peddler](https://atcoder.jp/contests/abc188/tasks/abc188_e)
-
-
