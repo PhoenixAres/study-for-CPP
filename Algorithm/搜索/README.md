@@ -13,13 +13,23 @@
 # 搜索
 ## 1. 深度优先搜索
 
+深度优先搜索（DFS，Depth-First Search）是搜索手段之一，它从某个状态开始，不断地转移状态直到无法转移，然后回退到前一步的状态，继续转移到其他状态，如此不断重复，直至找到最终的解。
+
+例如求解数独，首先在某个格子内填入适当的数字，然后再继续在下一个格子内填入数字，如此继续下去。如果发现某个格子无解了，就放弃前一个格子上选择的数字，改用其他可行的数字。
+
 例题：[Lake Counting](http://poj.org/problem?id=2386)
 
 分析：从任意的W开始，不停地把邻接的部分用 '.' 代替，1次DFS后，与初始的这个W连接的所有W都被替换为 '.'
 
 直至图中不再存在W时，总共进行的DFS的次数就是答案。使用递归实现DFS。
 
-时间复杂度：O（NM）
+时间复杂度：
+$$
+O(N \times M)，其中N，M表示矩阵地图的长和宽
+$$
+
+
+
 
 ```cpp
 #include <bits/stdc++.h>
@@ -32,9 +42,12 @@ const int maxn = 1e5 + 10;
 char field[110][110];
 int n, m;
 
+// 现在位置(x, y)
 void dfs(int x, int y)
 {
+    // 将现在所在位置替换为 '.'
     field[x][y] = '.';
+    // 循环遍历移动的8个方向
     for (int i = -1; i <= 1; ++i)
         for (int j = -1; j <= 1; ++j)
             if (x+i >= 0 && x+i < n && y+j >= 0 && y+j < m && field[x+i][y+j] == 'W') 
@@ -66,13 +79,17 @@ int main()
 ```
 ## 2. 宽度优先搜索
 
-与DFS不同的是，BFS总是优先搜索距离初始状态近的状态。
+宽度优先搜索（BFS，Breadth-First Search）也是搜索的手段之一，与DFS不同的是，BFS总是优先搜索距离初始状态近的状态。
 
 例题：[走出迷宫](https://ac.nowcoder.com/acm/problem/14572)
 
 分析：经典的迷宫类问题，该题询问的是能否到达终点，如果问题变成到达终点所需的最小步数，也就是BFS中，第一次到达终点的步数（因为BFS本身求的就是最短路）。
 
-BFS通常使用队列实现，时间复杂度：O（NM）
+BFS通常使用队列实现，时间复杂度：
+$$
+O(N \times M)，其中N，M表示矩阵地图的长和宽
+$$
+
 
 ```cpp
 #include <bits/stdc++.h>
@@ -83,8 +100,8 @@ typedef unsigned long long ull;
  
 const int maxn = 1e5 + 10;
 int n, m;
-char s[510][510];
-bool t[510][510];
+char s[510][510]; // 记录迷宫地图
+bool t[510][510]; // 标记每个点是否被走过
 int dx[] = {0, 0, 1, -1};
 int dy[] = {1, -1, 0, 0};
 
@@ -109,6 +126,7 @@ int main()
             q.pop();
             if (t[x][y]) continue;
             t[x][y] = 1;
+            // 到达终点，也即第一次到达终点，此时也为最短路
             if (x == e.first && y == e.second) { flag = true; break; }
             for (int i = 0; i < 4; ++i)
             {
@@ -133,9 +151,9 @@ int main()
 
 分析：将问题转化为从 y 变为 x，可以进行 +1，−1 或 ÷2 的操作，之所以这样做，是因为转化题意之后操作更受约束，即进行了剪枝。
 
-如果当前值为偶数，则只能除以 2
+- 如果当前值为偶数，则只能除以 2
 
-如果当前值为奇数，则只能执行加 1 或减 1 ，再除以 2
+- 如果当前值为奇数，则只能执行加 1 或减 1 ，再除以 2
 
 因为如果要加更多的数，完全可以在除以 2 之后再加
 
@@ -190,6 +208,14 @@ int main()
 ```
 ## 4. 搜索剪枝
 
+穷竭搜索会把所有可能的解都检查一遍，当解空间非常大时，复杂度也会相应变大，比如 n 个元素进行排列时的复杂度为：
+$$
+O(n!)
+$$
+这样的话，即使 n = 15 也很难较早终止，于是就需要进行剪枝。
+
+深度优先搜索时，有时早已明确知道从当前状态无论如何转移都不会存在解，这时，不再继续搜索而是直接跳过，这一方法即为剪枝。
+
 例题：[鸣人和佐助](http://bailian.openjudge.cn/practice/4115/)
 
 分析：最短路问题，可以使用BFS，但如果使用DFS寻找最短路就需要剪枝。
@@ -212,18 +238,20 @@ typedef long long ll;
 typedef unsigned long long ull;
 
 const int maxn = 1e5 + 10;
-char mp[300][300];
-int mark[300][300];
-int minL[300][300][20];
+char mp[300][300]; // 记录迷宫地图
+int mark[300][300]; // 标记每个点是否走过
+int minL[300][300][20]; // 最优化剪枝数组，记录走到(x, y)时，且查克拉数量为 t 时的最小花费时间
 int m, n, t;
-int minLen;
-int tempLen;
+int minLen; // 要求的最短时间
+int tempLen; // 到目前为止所花费的时间
 int dx[] = {0, 0, -1, 1};
 int dy[] = {1, -1, 0, 0};
 
 void dfs(int x, int y)
 {
+    // 如果当前时间大于曾记录过的最小时间，没有必要再搜索
     if (tempLen >= minLen) return ;
+    // 如果到达该状态时花费的时间比曾经到达该状态的花费时间多，没有必要再搜索
     if (tempLen >= minL[x][y][t]) return ;
     minL[x][y][t] = tempLen;
     if (mp[x][y] == '+')
@@ -285,24 +313,24 @@ int main()
 ## 5. 题目指南
 ### DFS
 
-[Lake Counting](#1-深度优先搜索)
+- [Lake Counting](#1-深度优先搜索)
 
-[棋盘问题](docs/棋盘问题.md)
+- [棋盘问题](docs/棋盘问题.md)
 
-[模拟战役](docs/模拟战役.md)
+- [模拟战役](docs/模拟战役.md)
 
 ### BFS
 
-[走出迷宫](#2-宽度优先搜索)
+- [走出迷宫](#2-宽度优先搜索)
 
-[maze](docs/maze.md)
+- [maze](docs/maze.md)
 
-[Third Avenue](docs/ThirdAvenue.md)
+- [Third Avenue](docs/ThirdAvenue.md)
 
 ### 记忆化搜索
 
-[+1-1x2](#3-记忆化搜索)
+- [+1-1x2](#3-记忆化搜索)
 
 ### 搜索剪枝
 
-[鸣人和佐助](#4-搜索剪枝)
+- [鸣人和佐助](#4-搜索剪枝)

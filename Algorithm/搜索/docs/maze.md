@@ -8,7 +8,7 @@
 
 在一个传送门入口位置，无法事先得知是走传送门的花费少，还是不走传送门的花费少。
 
-于是，为了每次选择花费最少的状态进行转移，使用优先队列替代队列，来进行BFS，可以得到答案。
+于是，为了每次选择花费最少的状态进行转移，**使用优先队列替代队列**，来进行BFS，可以得到答案。
 
 ```cpp
 #include <bits/stdc++.h>
@@ -19,8 +19,8 @@ typedef unsigned long long ull;
  
 const int maxn = 1e5 + 10;
 int n, m, q;
-char s[310][310];
-bool visit[310][310];
+char s[310][310]; // 记录迷宫地图
+bool visit[310][310]; // 标记每个点是否走过
 int dy[] = {0, 0, 1, -1};
 int dx[] = {1, -1, 0, 0};
 struct f
@@ -40,7 +40,7 @@ int main()
     while (scanf("%d%d%d", &n, &m, &q) != EOF)
     {
         memset(visit, 0, sizeof(visit));
-        vector<pair<int, int> > p[310][310];
+        vector<pair<int, int> > p[310][310]; // 记录传送门位置
         for (int i = 0; i < n; ++i) scanf("%s", s[i]);
         while (q--)
         {
@@ -52,6 +52,7 @@ int main()
             for (int j = 0; j < m; ++j)
                 if (s[i][j] == 'S') sx = i, sy = j;
                 else if (s[i][j] == 'T') tx = i, ty = j;
+        // 根据分析，这里采用优先队列
         priority_queue<f> que;
         que.push(f(sx, sy, 0));
 
