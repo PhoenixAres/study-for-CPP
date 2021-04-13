@@ -21,7 +21,9 @@
 
 [5. 计数DP](#5-计数DP)
 
-[6. 题目指南](#6-题目指南)
+[6. 树形DP](#6-树形DP)
+
+[7. 题目指南](#7-题目指南)
 
 
 
@@ -599,7 +601,88 @@ printf("%d\n", dp[m][n]);
 
 
 
-## 6. 题目指南
+## 6. 树形DP
+
+树形DP，即在树上进行的DP，由于树固有的递归性质，树形DP一般都是递归进行的。
+
+例题：[没有上司的舞会](https://www.luogu.com.cn/problem/P1352)
+
+状态：dp [i] [j] 表示以 i 为根的子树的最优解，其中，第二维值为 0 表示不参加舞会，值为 1 表示参加舞会。
+
+转移方程：（其中，下面的 x 表示 i 的儿子）
+
+- 若上司不参加舞会，那么下属可以参加，也可以不参加，则有：
+  $$
+  dp[i][0] = \sum {}max(dp[x][1], dp[x][0])
+  $$
+
+- 若上司参加舞会，那么下属不参加：
+  $$
+  dp[i][1] = a[i] + \sum {} dp[x][0]
+  $$
+
+入口：dp [i] [1] = a[i]，其中，1 <= i <= n
+
+出口：max( dp [i] [0]，dp [i] [1] ) ，其中，i 为根节点
+
+
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef unsigned long long ull;
+
+const int maxn = 6e3 + 10;
+int r[maxn];
+vector<int> p[maxn];
+int dp[maxn][2];
+bool root[maxn];
+int n;
+
+void dfs(int cur, int pre)
+{
+    for (int i = 0; i < p[cur].size(); ++i)
+    {
+        int v = p[cur][i];
+        if (v != pre)
+        {
+            dfs(v, cur);
+            dp[cur][0] += max(dp[v][0], dp[v][1]);
+            dp[cur][1] += dp[v][0];
+        }
+    }
+}
+
+int main()
+{
+    scanf("%d", &n);
+    for (int i = 1; i <= n; ++i) scanf("%d", r + i);
+    for (int i = 1; i <= n; ++i) dp[i][1] = r[i];
+    for (int i = 1; i < n; ++i)
+    {
+        int l, k;
+        scanf("%d%d", &l, &k);
+        root[l] = 1;
+        p[k].push_back(l);
+    }
+    for (int i = 1; i <= n; ++i)
+        if (!root[i])
+        {
+            dfs(i, -1);
+            printf("%d\n", max(dp[i][0], dp[i][1]));
+        }
+    return 0;
+}
+```
+
+
+
+
+
+
+## 7. 题目指南
 
 ### 最长公共子序列
 
@@ -631,9 +714,11 @@ printf("%d\n", dp[m][n]);
 
 - [Robot on Grid](docs/RobotonGrid.md)
 
+### 树形DP
 
-
-
+- [没有上司的舞会](#6-树形DP)
+- [打家劫舍](docs/打家劫舍.md)
+- [二叉树染色](docs/二叉树染色.md)
 
 
 
